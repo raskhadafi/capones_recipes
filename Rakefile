@@ -14,7 +14,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "capones-recipes"
+  gem.name = "capones_recipes"
   gem.homepage = "http://github.com/raskhadafi/capones-recipes"
   gem.license = "MIT"
   gem.summary = "Some capistrano recipes for use." 
