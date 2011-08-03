@@ -4,4 +4,4 @@
 
 load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 
-require 'lib/capones_recipes'
+require 'capones_recipes'
