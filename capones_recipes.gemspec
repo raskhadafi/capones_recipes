@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek"]
-  s.date = %q{2011-08-03}
+  s.date = %q{2011-08-04}
   s.description = %q{just for fun}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
@@ -17,13 +17,25 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".document",
     "Capfile",
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE.txt",
+    "README.rdoc",
+    "Rakefile",
+    "VERSION",
+    "capones_recipes.gemspec",
+    "config/deploy.rb",
     "lib/capones_recipes.rb",
-    "lib/recipes/database_yml.rb",
-    "lib/recipes/mod_rails.rb",
+    "lib/recipes/database.rb",
+    "lib/recipes/database/sqlite.rb",
+    "lib/recipes/database/sync.rb",
+    "lib/recipes/rails.rb",
+    "lib/recipes/rails/database_yml.rb",
+    "lib/recipes/rails/mod_rails.rb",
     "lib/recipes/rails31.rb",
-    "lib/recipes/sqlite.rb",
-    "lib/recipes/sync.rb"
+    "lib/recipes/rails31/rails31.rb"
   ]
   s.homepage = %q{http://github.com/raskhadafi/capones-recipes}
   s.licenses = ["MIT"]
