@@ -1,0 +1,1 @@
+Dir.glob(File.join(File.dirname(__FILE__), '/database/*.rb')).sort.each { |f| load f }
