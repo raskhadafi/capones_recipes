@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.2.0"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek"]
@@ -29,13 +29,23 @@ Gem::Specification.new do |s|
     "config/deploy.rb",
     "lib/capones_recipes.rb",
     "lib/recipes/database.rb",
+    "lib/recipes/database/mysql.rb",
     "lib/recipes/database/sqlite.rb",
     "lib/recipes/database/sync.rb",
+    "lib/recipes/katalog.rb",
+    "lib/recipes/katalog/import.rb",
+    "lib/recipes/katalog/katalog.rb",
+    "lib/recipes/new_relic.rb",
+    "lib/recipes/new_relic/new_relic.rb",
     "lib/recipes/rails.rb",
     "lib/recipes/rails/database_yml.rb",
     "lib/recipes/rails/mod_rails.rb",
     "lib/recipes/rails31.rb",
-    "lib/recipes/rails31/rails31.rb"
+    "lib/recipes/rails31/rails31.rb",
+    "lib/recipes/settings_logic.rb",
+    "lib/recipes/settings_logic/settings_logic.rb",
+    "lib/recipes/thinking_sphinx.rb",
+    "lib/recipes/thinking_sphinx/thinking_sphinx.rb"
   ]
   s.homepage = %q{http://github.com/raskhadafi/capones-recipes}
   s.licenses = ["MIT"]
