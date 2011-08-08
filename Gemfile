@@ -8,7 +8,5 @@ group :development do
 end
 
 gem 'capistrano'
-gem 'cap-recipes'
-gem 'capistrano'
 gem 'capistrano_colors'
 gem 'cap-recipes'

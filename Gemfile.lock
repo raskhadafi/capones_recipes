@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     cap-recipes (0.3.36)
-    capistrano (2.6.0)
+    capistrano (2.8.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
