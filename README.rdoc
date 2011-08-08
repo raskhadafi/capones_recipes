@@ -9,6 +9,12 @@ So that it's only neccessary to integrate this gem in the rails app.
 * Capify your project
 * In your config/deploy.rb require the needed cook book.
 
+=== Advice
+
+Maybe capistrano must be executed by the bundler, see example:
+
+bundler exec cap -T # Shows the avaible cap tasks.
+
 == Avaible Recipes
 
 * capones_recipes
