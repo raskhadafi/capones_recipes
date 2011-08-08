@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.3.5"
+  s.version = "0.3.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek"]
@@ -65,6 +65,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<capistrano>, [">= 0"])
       s.add_runtime_dependency(%q<capistrano_colors>, [">= 0"])
       s.add_runtime_dependency(%q<cap-recipes>, [">= 0"])
+      s.add_runtime_dependency(%q<capistrano-ext>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.1"])
@@ -73,6 +74,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<capistrano>, [">= 0"])
       s.add_dependency(%q<capistrano_colors>, [">= 0"])
       s.add_dependency(%q<cap-recipes>, [">= 0"])
+      s.add_dependency(%q<capistrano-ext>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.1"])
@@ -82,6 +84,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<capistrano>, [">= 0"])
     s.add_dependency(%q<capistrano_colors>, [">= 0"])
     s.add_dependency(%q<cap-recipes>, [">= 0"])
+    s.add_dependency(%q<capistrano-ext>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.1"])
