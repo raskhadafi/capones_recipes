@@ -15,6 +15,8 @@ So that it's only neccessary to integrate this gem in the rails app.
 ** Loads all recipes from the gem.
 * cookbook/rails
 ** A recipe for standard rails applications.
+* cookbook/rails31
+** A recipe that was extended for rails 3.1 applications.
 
 == Contributing to capones-recipes
  
