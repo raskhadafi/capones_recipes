@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.2.5"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek"]
-  s.date = %q{2011-08-05}
+  s.date = %q{2011-08-08}
   s.description = %q{just for fun}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
     "lib/recipes/new_relic.rb",
     "lib/recipes/new_relic/new_relic.rb",
     "lib/recipes/rails.rb",
+    "lib/recipes/rails/bundler.rb",
     "lib/recipes/rails/database_yml.rb",
     "lib/recipes/rails/mod_rails.rb",
     "lib/recipes/rails31.rb",
@@ -59,8 +60,6 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<capistrano>, [">= 0"])
-      s.add_runtime_dependency(%q<cap-recipes>, [">= 0"])
-      s.add_runtime_dependency(%q<capistrano>, [">= 0"])
       s.add_runtime_dependency(%q<capistrano_colors>, [">= 0"])
       s.add_runtime_dependency(%q<cap-recipes>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
@@ -68,8 +67,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.1"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<capistrano>, [">= 0"])
-      s.add_dependency(%q<cap-recipes>, [">= 0"])
       s.add_dependency(%q<capistrano>, [">= 0"])
       s.add_dependency(%q<capistrano_colors>, [">= 0"])
       s.add_dependency(%q<cap-recipes>, [">= 0"])
@@ -79,8 +76,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<capistrano>, [">= 0"])
-    s.add_dependency(%q<cap-recipes>, [">= 0"])
     s.add_dependency(%q<capistrano>, [">= 0"])
     s.add_dependency(%q<capistrano_colors>, [">= 0"])
     s.add_dependency(%q<cap-recipes>, [">= 0"])
