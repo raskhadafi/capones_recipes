@@ -10,3 +10,4 @@ end
 gem 'capistrano'
 gem 'capistrano_colors'
 gem 'cap-recipes'
+gem 'capistrano-ext'
