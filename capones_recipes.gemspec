@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.3.9"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek"]
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/capones_recipes.rb",
     "lib/cookbook/rails.rb",
     "lib/cookbook/rails31.rb",
+    "lib/cookbook/wikisigns.rb",
     "lib/recipes/database.rb",
     "lib/recipes/database/mysql.rb",
     "lib/recipes/database/sqlite.rb",
