@@ -1,3 +1,4 @@
+require 'capistrano/configuration'
 # MySQL Backup/Restore tasks
 #
 # Based on code from:
