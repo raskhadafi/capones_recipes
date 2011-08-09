@@ -5,4 +5,4 @@ require 'capistrano_colors'
 require 'cap_recipes/tasks/passenger'
 
 load File.join(File.dirname(__FILE__), '../recipes/rails.rb')
-load File.join(File.dirname(__FILE__), '../recipes/database.rb')
+load File.join(File.dirname(__FILE__), '../recipes/database/mysql.rb')
