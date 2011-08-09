@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.3.6"
+  s.version = "0.3.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek"]
-  s.date = %q{2011-08-08}
+  s.date = %q{2011-08-09}
   s.description = %q{just for fun}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
