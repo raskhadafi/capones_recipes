@@ -179,6 +179,47 @@ Capistrano::Configuration.instance.load do
       end
 
       desc <<-DESC
+        Syncs database from the local develoment environment to the selected mutli_stage environement.
+        The database credentials will be read from your local config/database.yml file and a copy of the
+        dump will be kept within the shared sync directory. The amount of backups that will be kept is
+        declared in the sync_backups variable and defaults to 5.
+      DESC
+      task :kuhsaft, :roles => :db, :only => { :primary => true } do
+        # Use production on non-multistage
+        set :stage, 'production' unless exists?(:stage)
+
+        filename = "database.kuhsaft.#{stage}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
+
+        on_rollback do
+          delete "#{shared_path}/sync/#{filename}"
+          system "rm -f #{filename}"
+        end
+
+        # Make a backup before importing
+        username, password, database, host = remote_database_config(stage)
+        host_option = host ? "--host='#{host}'" : ""
+        run "mysqldump -u #{username} --password='#{password}' #{host_option} #{database} pages localized_pages contents assets tags taggings | bzip2 -9 > #{shared_path}/sync/#{filename}" do |channel, stream, data|
+          puts data
+        end
+
+        # Local DB export
+        filename = "dump.local.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
+        username, password, database, host = database_config('development')
+        host_option = host ? "--host='#{host}'" : ""
+        system "mysqldump -u #{username} --password='#{password}' #{host_option} #{database} | bzip2 -9 > #{filename}"
+        upload filename, "#{shared_path}/sync/#{filename}"
+        system "rm -f #{filename}"
+
+        # Remote DB import
+        username, password, database, host = remote_database_config(stage)
+        host_option = host ? "--host='#{host}'" : ""
+        run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}; rm -f #{shared_path}/sync/#{filename}"
+        purge_old_backups "database"
+
+        logger.important "sync database from local to the stage '#{stage}' finished"
+      end
+
+      desc <<-DESC
         Sync declared directories from the local development environement to the selected multi_stage
         environment. The synced directories must be declared as an array of Strings with the sync_directories
         variable.  The path is relative to the rails root.
