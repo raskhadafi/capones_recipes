@@ -46,7 +46,7 @@ Capistrano::Configuration.instance.load do
       DESC
       task :db, :roles => :db, :only => { :primary => true } do
         # Use production on non-multistage
-        stage ||= 'production'
+        set :stage, 'production' unless exists?(:stage)
 
         filename = "database.#{stage}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
         on_rollback { delete "#{shared_path}/sync/#{filename}" }
@@ -76,7 +76,7 @@ Capistrano::Configuration.instance.load do
       DESC
       task :fs, :roles => :web, :once => true do
         # Use production on non-multistage
-        stage ||= 'production'
+        set :stage, 'production' unless exists?(:stage)
 
         server, port = host_and_port
 
@@ -114,7 +114,7 @@ Capistrano::Configuration.instance.load do
       DESC
       task :db, :roles => :db, :only => { :primary => true } do
         # Use production on non-multistage
-        stage ||= 'production'
+        set :stage, 'production' unless exists?(:stage)
 
         filename = "database.#{stage}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
 
@@ -154,7 +154,7 @@ Capistrano::Configuration.instance.load do
       DESC
       task :fs, :roles => :web, :once => true do
         # Use production on non-multistage
-        stage ||= 'production'
+        set :stage, 'production' unless exists?(:stage)
 
         server, port = host_and_port
         Array(fetch(:sync_directories, [])).each do |syncdir|
