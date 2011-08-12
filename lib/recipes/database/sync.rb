@@ -95,6 +95,11 @@ Capistrano::Configuration.instance.load do
 
       namespace :kuhsaft do
 
+        desc <<-DESC
+          Syncs the database and declared directories from the selected multi_stage environment
+          to the local development environment. This task simply calls both the 'sync:down:kuhsaft:db' and
+          'sync:down:kuhsaft:fs' tasks.
+        DESC
         task :default do
           db
         end
@@ -215,6 +220,11 @@ Capistrano::Configuration.instance.load do
 
       namespace :kuhsaft do
 
+        desc <<-DESC
+          Syncs the database and declared directories from the local development environment
+          to the selected multi_stage environment. This task simply calls both the 'sync:up:kuhsaft:db' and
+          'sync:up:kuhsaft:fs' tasks.
+        DESC
         task :default do
           db
         end
