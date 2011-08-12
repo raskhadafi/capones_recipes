@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance.load do
   before "deploy:setup", :settings_logic
-  after "deploy:update_code", "settings_logic:symlink"
+  before "bundler:update", "settings_logic:symlink"
 
   namespace :settings_logic do
     desc "Create application yaml in capistrano shared path"
