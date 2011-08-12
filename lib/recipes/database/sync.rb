@@ -94,6 +94,11 @@ Capistrano::Configuration.instance.load do
       end
 
       namespace :kuhsaft do
+
+        task :default do
+          db
+        end
+
         desc <<-DESC
           Syncs database from the selected mutli_stage environement to the local develoment environment.
           The database credentials will be read from your local config/database.yml file and a copy of the
@@ -209,6 +214,11 @@ Capistrano::Configuration.instance.load do
       end
 
       namespace :kuhsaft do
+
+        task :default do
+          db
+        end
+
         desc <<-DESC
           Syncs database from the local develoment environment to the selected mutli_stage environement.
           The database credentials will be read from your local config/database.yml file and a copy of the
