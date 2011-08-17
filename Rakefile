@@ -18,9 +18,9 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/raskhadafi/capones-recipes"
   gem.license = "MIT"
   gem.summary = "Some capistrano recipes for use." 
-  gem.description = "just for fun"
+  gem.description = "A collection of useful capistrano recipes used by CyT GmbH and others."
   gem.email = "roman.simecek@cyt.ch"
-  gem.authors = ["Roman Simecek"]
+  gem.authors = ["Roman Simecek", "Simon Hürlimann"]
   # gem.files = ['lib/recipes/*', 'lib/*', 'Capfile']
   # dependencies defined in Gemfile
 end
