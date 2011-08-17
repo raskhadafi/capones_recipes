@@ -158,7 +158,7 @@ Capistrano::Configuration.instance.load do
         # Use production on non-multistage
         set :stage, 'production' unless exists?(:stage)
 
-        filename = "database.#{stage}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
+        filename = "database.all.#{stage}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
 
         on_rollback do
           delete "#{shared_path}/sync/#{filename}"
@@ -184,7 +184,7 @@ Capistrano::Configuration.instance.load do
         username, password, database, host = remote_database_config(stage)
         host_option = host ? "--host='#{host}'" : ""
         run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}; rm -f #{shared_path}/sync/#{filename}"
-        purge_old_backups "database"
+        purge_old_backups "database.all"
 
         logger.important "sync database from local to the stage '#{stage}' finished"
       end
@@ -222,8 +222,7 @@ Capistrano::Configuration.instance.load do
 
         desc <<-DESC
           Syncs the database and declared directories from the local development environment
-          to the selected multi_stage environment. This task simply calls both the 'sync:up:kuhsaft:db' and
-          'sync:up:kuhsaft:fs' tasks.
+          to the selected multi_stage environment. This task simply calls both the 'sync:up:kuhsaft:db' task.
         DESC
         task :default do
           db
@@ -265,7 +264,7 @@ Capistrano::Configuration.instance.load do
           username, password, database, host = remote_database_config(stage)
           host_option = host ? "--host='#{host}'" : ""
           run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}; rm -f #{shared_path}/sync/#{filename}"
-          purge_old_backups "database"
+          purge_old_backups "database.kuhsaft"
 
           logger.important "sync database from local to the stage '#{stage}' finished"
         end

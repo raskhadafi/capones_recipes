@@ -10,7 +10,7 @@ Capistrano::Configuration.instance.load do
 
     desc "Make symlink for shared uploads"
     task :symlink do
-      run "ln -nfs #{shared_path}/uploads #{release_path}/uploads"
+      run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
     end
   end
 end
