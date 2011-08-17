@@ -21,7 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = "A collection of useful capistrano recipes used by CyT GmbH and others."
   gem.email = "roman.simecek@cyt.ch"
   gem.authors = ["Roman Simecek", "Simon Hürlimann"]
-  gem.files = ['lib/recipes/*', 'lib/*', 'Capfile', 'lib/cookbook/*']
+  # gem.files = ['lib/recipes/*', 'lib/*', 'Capfile', 'lib/cookbook/*']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
