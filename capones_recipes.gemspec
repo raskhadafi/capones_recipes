@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.11.0"
+  s.version = "0.12.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek", "Simon H\303\274rlimann"]
-  s.date = %q{2011-08-17}
+  s.date = %q{2011-08-19}
   s.description = %q{A collection of useful capistrano recipes used by CyT GmbH and others.}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
@@ -50,6 +50,8 @@ Gem::Specification.new do |s|
     "lib/recipes/rails/mod_rails.rb",
     "lib/recipes/rails31.rb",
     "lib/recipes/rails31/rails31.rb",
+    "lib/recipes/restful_authentication.rb",
+    "lib/recipes/restful_authentication/setup.rb",
     "lib/recipes/settings_logic.rb",
     "lib/recipes/settings_logic/settings_logic.rb",
     "lib/recipes/thinking_sphinx.rb",
