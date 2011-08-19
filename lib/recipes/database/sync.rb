@@ -24,7 +24,7 @@ Capistrano::Configuration.instance.load do
       be called on 'deploy:setup'
     DESC
     task :setup do
-      run "cd #{shared_path}; mkdir sync"
+      run "mkdir -p #{shared_path}/sync"
     end
 
     namespace :down do
