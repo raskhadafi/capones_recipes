@@ -6,6 +6,7 @@ Capistrano::Configuration.instance.load do
     desc "Asks which modules should be initialized and writes the config/initializer/bookyt.rb"
     task :setup, :roles => :app do
       run "mkdir -p #{shared_path}/initializer"
+      # TODO: From here capistrano should ask which modules should be initialized and write the initializer.
     end
     
     desc "Make symlink for shared bookyt initializer"
