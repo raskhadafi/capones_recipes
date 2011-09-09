@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.12.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Roman Simecek", "Simon H\303\274rlimann"]
-  s.date = %q{2011-08-19}
+  s.authors = ["Roman Simecek", "Simon Hürlimann"]
+  s.date = %q{2011-09-08}
   s.description = %q{A collection of useful capistrano recipes used by CyT GmbH and others.}
   s.email = %q{roman.simecek@cyt.ch}
   s.extra_rdoc_files = [
@@ -33,6 +33,8 @@ Gem::Specification.new do |s|
     "lib/cookbook/rails.rb",
     "lib/cookbook/rails31.rb",
     "lib/cookbook/wikisigns.rb",
+    "lib/recipes/bookyt.rb",
+    "lib/recipes/bookyt/setup.rb",
     "lib/recipes/database.rb",
     "lib/recipes/database/mysql.rb",
     "lib/recipes/database/sqlite.rb",
@@ -55,16 +57,16 @@ Gem::Specification.new do |s|
     "lib/recipes/settings_logic.rb",
     "lib/recipes/settings_logic/settings_logic.rb",
     "lib/recipes/thinking_sphinx.rb",
-    "lib/recipes/thinking_sphinx/thinking_sphinx.rb"
+    "lib/recipes/thinking_sphinx/thinking_sphinx.rb",
+    "lib/recipes/utilities.rb"
   ]
   s.homepage = %q{http://github.com/raskhadafi/capones-recipes}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Some capistrano recipes for use.}
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
