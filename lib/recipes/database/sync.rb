@@ -67,6 +67,9 @@ Capistrano::Configuration.instance.load do
         system "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}; rm -f #{filename}"
 
         logger.important "sync database from the stage '#{stage}' to local finished"
+        
+        # Start db:migrate
+        system "rake db:migrate"
       end
 
       desc <<-DESC
