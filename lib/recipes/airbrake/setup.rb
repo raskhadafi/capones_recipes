@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../utilities')
 
 Capistrano::Configuration.instance(true).load do
+  after "deploy:setup", "airbrake:setup"
+  
   namespace :airbrake do
     desc "Creates the air brake initializer with the custom API key."
     task :setup do
