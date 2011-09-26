@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{capones_recipes}
-  s.version = "0.14.2"
+  s.version = "0.14.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Roman Simecek", "Simon Hürlimann"]
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/cookbook/wikisigns.rb",
     "lib/recipes/airbrake.rb",
     "lib/recipes/airbrake/setup.rb",
+    "lib/recipes/airbrake/symlink.rb",
     "lib/recipes/airbrake/templates/airbrake.rb",
     "lib/recipes/bookyt.rb",
     "lib/recipes/bookyt/setup.rb",
