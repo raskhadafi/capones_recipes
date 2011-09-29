@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{capones_recipes}
-  s.version = "0.14.3"
+  s.name = "capones_recipes"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Roman Simecek", "Simon Hürlimann"]
-  s.date = %q{2011-09-28}
-  s.description = %q{A collection of useful capistrano recipes used by CyT GmbH and others.}
-  s.email = %q{roman.simecek@cyt.ch}
+  s.authors = ["Roman Simecek", "Simon H\u{fc}rlimann"]
+  s.date = "2011-09-29"
+  s.description = "A collection of useful capistrano recipes used by CyT GmbH and others."
+  s.email = "roman.simecek@cyt.ch"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -30,46 +30,46 @@ Gem::Specification.new do |s|
     "config/deploy/production.rb",
     "config/deploy/staging.rb",
     "lib/capones_recipes.rb",
-    "lib/cookbook/rails.rb",
-    "lib/cookbook/rails31.rb",
-    "lib/cookbook/wikisigns.rb",
-    "lib/recipes/airbrake.rb",
-    "lib/recipes/airbrake/setup.rb",
-    "lib/recipes/airbrake/symlink.rb",
-    "lib/recipes/airbrake/templates/airbrake.rb",
-    "lib/recipes/bookyt.rb",
-    "lib/recipes/bookyt/setup.rb",
-    "lib/recipes/bookyt/templates/bookyt.rb",
-    "lib/recipes/database.rb",
-    "lib/recipes/database/mysql.rb",
-    "lib/recipes/database/sqlite.rb",
-    "lib/recipes/database/sync.rb",
-    "lib/recipes/katalog.rb",
-    "lib/recipes/katalog/import.rb",
-    "lib/recipes/katalog/katalog.rb",
-    "lib/recipes/kuhsaft.rb",
-    "lib/recipes/kuhsaft/setup.rb",
-    "lib/recipes/new_relic.rb",
-    "lib/recipes/new_relic/new_relic.rb",
-    "lib/recipes/rails.rb",
-    "lib/recipes/rails/bundler.rb",
-    "lib/recipes/rails/database_yml.rb",
-    "lib/recipes/rails/mod_rails.rb",
-    "lib/recipes/rails31.rb",
-    "lib/recipes/rails31/rails31.rb",
-    "lib/recipes/restful_authentication.rb",
-    "lib/recipes/restful_authentication/setup.rb",
-    "lib/recipes/settings_logic.rb",
-    "lib/recipes/settings_logic/settings_logic.rb",
-    "lib/recipes/thinking_sphinx.rb",
-    "lib/recipes/thinking_sphinx/thinking_sphinx.rb",
-    "lib/recipes/utilities.rb"
+    "lib/capones_recipes/cookbook/rails.rb",
+    "lib/capones_recipes/cookbook/rails31.rb",
+    "lib/capones_recipes/cookbook/wikisigns.rb",
+    "lib/capones_recipes/tasks/airbrake.rb",
+    "lib/capones_recipes/tasks/airbrake/setup.rb",
+    "lib/capones_recipes/tasks/airbrake/symlink.rb",
+    "lib/capones_recipes/tasks/airbrake/templates/airbrake.rb",
+    "lib/capones_recipes/tasks/bookyt.rb",
+    "lib/capones_recipes/tasks/bookyt/setup.rb",
+    "lib/capones_recipes/tasks/bookyt/templates/bookyt.rb",
+    "lib/capones_recipes/tasks/database.rb",
+    "lib/capones_recipes/tasks/database/mysql.rb",
+    "lib/capones_recipes/tasks/database/sqlite.rb",
+    "lib/capones_recipes/tasks/database/sync.rb",
+    "lib/capones_recipes/tasks/katalog.rb",
+    "lib/capones_recipes/tasks/katalog/import.rb",
+    "lib/capones_recipes/tasks/katalog/katalog.rb",
+    "lib/capones_recipes/tasks/kuhsaft.rb",
+    "lib/capones_recipes/tasks/kuhsaft/setup.rb",
+    "lib/capones_recipes/tasks/new_relic.rb",
+    "lib/capones_recipes/tasks/new_relic/new_relic.rb",
+    "lib/capones_recipes/tasks/rails.rb",
+    "lib/capones_recipes/tasks/rails/bundler.rb",
+    "lib/capones_recipes/tasks/rails/database_yml.rb",
+    "lib/capones_recipes/tasks/rails/mod_rails.rb",
+    "lib/capones_recipes/tasks/rails31.rb",
+    "lib/capones_recipes/tasks/rails31/rails31.rb",
+    "lib/capones_recipes/tasks/restful_authentication.rb",
+    "lib/capones_recipes/tasks/restful_authentication/setup.rb",
+    "lib/capones_recipes/tasks/settings_logic.rb",
+    "lib/capones_recipes/tasks/settings_logic/settings_logic.rb",
+    "lib/capones_recipes/tasks/thinking_sphinx.rb",
+    "lib/capones_recipes/tasks/thinking_sphinx/thinking_sphinx.rb",
+    "lib/capones_recipes/tasks/utilities.rb"
   ]
-  s.homepage = %q{http://github.com/raskhadafi/capones-recipes}
+  s.homepage = "http://github.com/raskhadafi/capones-recipes"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Some capistrano recipes for use.}
+  s.rubygems_version = "1.8.10"
+  s.summary = "Some capistrano recipes for use."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
