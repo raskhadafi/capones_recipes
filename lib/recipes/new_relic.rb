@@ -1,1 +1,0 @@
-Dir.glob(File.join(File.dirname(__FILE__), '/new_relic/*.rb')).sort.each { |f| load f }

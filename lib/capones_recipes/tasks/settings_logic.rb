@@ -1,0 +1,1 @@
+Dir.glob(File.join(File.dirname(__FILE__), '/settings_logic/*.rb')).sort.each { |f| require f }

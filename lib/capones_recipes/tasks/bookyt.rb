@@ -1,0 +1,1 @@
+Dir.glob(File.join(File.dirname(__FILE__), '/bookyt/*.rb')).sort.each { |f| require f }

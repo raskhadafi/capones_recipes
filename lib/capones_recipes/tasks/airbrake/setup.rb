@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../utilities')
 
-Capistrano::Configuration.instance(true).load do
+Capistrano::Configuration.instance(:must_exist).load do
   after "deploy:setup", "airbrake:setup"
   
   namespace :airbrake do
