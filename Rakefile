@@ -9,19 +9,6 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'rake'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "capones_recipes"
-  gem.homepage = "http://github.com/raskhadafi/capones-recipes"
-  gem.license = "MIT"
-  gem.summary = "Some capistrano recipes for use." 
-  gem.description = "A collection of useful capistrano recipes used by CyT GmbH and others."
-  gem.email = "roman.simecek@cyt.ch"
-  gem.authors = ["Roman Simecek", "Simon Hürlimann"]
-  # gem.files = ['lib/recipes/*', 'lib/*', 'Capfile', 'lib/cookbook/*']
-  # dependencies defined in Gemfile
-end
-Jeweler::RubygemsDotOrgTasks.new
+require 'rake'
+require 'rdoc/task'

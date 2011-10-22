@@ -1,12 +1,21 @@
-source 'http://rubygems.org'
+# Settings
+# ========
+source :rubygems
 
+gemspec
+
+# Development
+# ===========
 group :development do
-  gem 'shoulda', '>= 0'
-  gem 'bundler', '~> 1.0'
-  gem 'jeweler', '~> 1.6.1'
-  gem 'rcov', '>= 0'
 end
 
+# Test
+# ====
+group :test do
+end
+
+# Gem
+# ===
 gem 'capistrano'
 gem 'capistrano_colors'
 gem 'cap-recipes'
