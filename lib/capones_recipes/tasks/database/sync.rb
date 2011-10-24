@@ -64,13 +64,13 @@ Capistrano::Configuration.instance.load do
 
         # Local DB import
         username, password, database, host = database_config('development')
-        run "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
-        run "rm -f #{filename}"
+        run_locally "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
+        run_locally "rm -f #{filename}"
 
         logger.important "sync database from the stage '#{stage}' to local finished"
         
         # Start db:migrate
-        run "rake db:migrate"
+        run_locally "rake db:migrate"
       end
 
       desc <<-DESC
@@ -91,7 +91,7 @@ Capistrano::Configuration.instance.load do
           end
           logger.info "sync #{syncdir} from #{server}:#{port} to local"
           destination, base = Pathname.new(syncdir).split
-          run "rsync --verbose --archive --compress --copy-links --delete --stats --rsh='ssh -p #{port}' #{user}@#{server}:#{current_path}/#{syncdir} #{destination.to_s}"
+          run_locally "rsync --verbose --archive --compress --copy-links --delete --stats --rsh='ssh -p #{port}' #{user}@#{server}:#{current_path}/#{syncdir} #{destination.to_s}"
         end
 
         logger.important "sync filesystem from the stage '#{stage}' to local finished"
@@ -134,8 +134,8 @@ Capistrano::Configuration.instance.load do
 
           # Local DB import
           username, password, database, host = database_config('development')
-          run "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
-          run "rm -f #{filename}"
+          run_locally "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
+          run_locally "rm -f #{filename}"
 
           logger.important "sync database from the stage '#{stage}' to local finished"
         end
@@ -181,9 +181,9 @@ Capistrano::Configuration.instance.load do
         filename = "dump.local.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
         username, password, database, host = database_config('development')
         host_option = host ? "--host='#{host}'" : ""
-        run "mysqldump -u #{username} --password='#{password}' #{host_option} #{database} | bzip2 -9 > #{filename}"
+        run_locally "mysqldump -u #{username} --password='#{password}' #{host_option} #{database} | bzip2 -9 > #{filename}"
         upload filename, "#{shared_path}/sync/#{filename}"
-        system "rm -f #{filename}"
+        run_locally "rm -f #{filename}"
 
         # Remote DB import
         username, password, database, host = remote_database_config(stage)
@@ -219,7 +219,7 @@ Capistrano::Configuration.instance.load do
 
           # Sync directory up
           logger.info "sync #{syncdir} to #{server}:#{port} from local"
-          run "rsync --verbose --archive --compress --keep-dirlinks --delete --stats --rsh='ssh -p #{port}' #{syncdir} #{user}@#{server}:#{current_path}/#{destination.to_s}"
+          run_locally "rsync --verbose --archive --compress --keep-dirlinks --delete --stats --rsh='ssh -p #{port}' #{syncdir} #{user}@#{server}:#{current_path}/#{destination.to_s}"
         end
         logger.important "sync filesystem from local to the stage '#{stage}' finished"
       end
@@ -248,7 +248,7 @@ Capistrano::Configuration.instance.load do
 
           on_rollback do
             delete "#{shared_path}/sync/#{filename}"
-            system "rm -f #{filename}"
+            run_locally "rm -f #{filename}"
           end
 
           # Make a backup before importing
@@ -262,9 +262,9 @@ Capistrano::Configuration.instance.load do
           filename = "dump.local.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql.bz2"
           username, password, database, host = database_config('development')
           host_option = host ? "--host='#{host}'" : ""
-          run "mysqldump -u #{username} --password='#{password}' #{host_option} #{database} | bzip2 -9 > #{filename}"
+          run_locally "mysqldump -u #{username} --password='#{password}' #{host_option} #{database} | bzip2 -9 > #{filename}"
           upload filename, "#{shared_path}/sync/#{filename}"
-          system "rm -f #{filename}"
+          run_locally "rm -f #{filename}"
 
           # Remote DB import
           username, password, database, host = remote_database_config(stage)
