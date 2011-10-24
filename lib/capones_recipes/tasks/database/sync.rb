@@ -70,7 +70,7 @@ Capistrano::Configuration.instance.load do
         logger.important "sync database from the stage '#{stage}' to local finished"
         
         # Start db:migrate
-        system "rake db:migrate"
+        run "rake db:migrate"
       end
 
       desc <<-DESC
