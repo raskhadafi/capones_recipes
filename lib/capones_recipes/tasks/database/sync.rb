@@ -64,7 +64,8 @@ Capistrano::Configuration.instance.load do
 
         # Local DB import
         username, password, database, host = database_config('development')
-        run "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}; rm -f #{filename}"
+        run "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
+        run "rm -f #{filename}"
 
         logger.important "sync database from the stage '#{stage}' to local finished"
         
@@ -133,7 +134,8 @@ Capistrano::Configuration.instance.load do
 
           # Local DB import
           username, password, database, host = database_config('development')
-          run "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}; rm -f #{filename}"
+          run "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
+          run "rm -f #{filename}"
 
           logger.important "sync database from the stage '#{stage}' to local finished"
         end
@@ -186,7 +188,8 @@ Capistrano::Configuration.instance.load do
         # Remote DB import
         username, password, database, host = remote_database_config(stage)
         host_option = host ? "--host='#{host}'" : ""
-        run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}; rm -f #{shared_path}/sync/#{filename}"
+        run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}"
+        run "rm -f #{shared_path}/sync/#{filename}"
         purge_old_backups "database.all"
 
         logger.important "sync database from local to the stage '#{stage}' finished"
@@ -266,7 +269,8 @@ Capistrano::Configuration.instance.load do
           # Remote DB import
           username, password, database, host = remote_database_config(stage)
           host_option = host ? "--host='#{host}'" : ""
-          run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}; rm -f #{shared_path}/sync/#{filename}"
+          run "bzip2 -d -c #{shared_path}/sync/#{filename} | mysql -u #{username} --password='#{password}' #{host_option} #{database}"
+          run "rm -f #{shared_path}/sync/#{filename}"
           purge_old_backups "database.kuhsaft"
 
           logger.important "sync database from local to the stage '#{stage}' finished"
