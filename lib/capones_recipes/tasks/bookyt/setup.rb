@@ -10,7 +10,7 @@ Capistrano::Configuration.instance(true).load do
       run "mkdir -p #{shared_path}/initializer"
       
       modules = [:pos, :salary, :stock, :projects].inject([]) do |out, pos|
-        out << "bookyt_#{pos.to_s}" #if utilities.yes? "Install bookyt_#{pos.to_s}"
+        out << "bookyt_#{pos.to_s}" if Utilities.yes? "Install bookyt_#{pos.to_s}"
         
         out
       end
