@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance.load do
   # Bundle install
   require "bundler/capistrano"
-  after "bundle:install", "deploy:migrate"
+  after "deploy:update_code", "bundle:install"
 end
