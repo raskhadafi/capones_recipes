@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance.load do
   before "deploy:setup", :db
-  before "bundle:install", "db:symlink"
+  after "deploy:finalize_update", "db:symlink"
 
   namespace :db do
     desc "Create database yaml in capistrano shared path"
