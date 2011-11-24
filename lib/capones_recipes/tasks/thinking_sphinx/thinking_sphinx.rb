@@ -2,12 +2,9 @@
 require 'thinking_sphinx/deploy/capistrano'
 
 Capistrano::Configuration.instance.load do
-  after "deploy:setup", "thinking_sphinx:setup"
-
-  after "deploy:migrate" do
-    thinking_sphinx.symlink
-    thinking_sphinx.rebuild
-  end
+  before "thinking_sphinx:symlink", "thinking_sphinx:setup"
+  after "deploy:finalize_update", "thinking_sphinx:symlink"
+  before "deploy:restart", "thinking_sphinx:rebuild"
 
   namespace :thinking_sphinx do
     desc "Prepare for sphinx config"
