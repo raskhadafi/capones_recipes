@@ -1,0 +1,1 @@
+Dir.glob(File.join(File.dirname(__FILE__), '/carrier_wave/*.rb')).sort.each { |f| require f }
