@@ -64,7 +64,7 @@ Capistrano::Configuration.instance.load do
 
         # Local DB import
         username, password, database, host = database_config('development')
-        run_locally "rake db:drop && rake db:create"
+        run_locally "rake db:reset"
         run_locally "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
         run_locally "rm -f #{filename}"
 
@@ -135,7 +135,7 @@ Capistrano::Configuration.instance.load do
 
           # Local DB import
           username, password, database, host = database_config('development')
-          run_locally "rake db:drop && rake db:create"
+          run_locally "rake db:reset"
           run_locally "bzip2 -d -c #{filename} | mysql -u #{username} --password='#{password}' #{database}"
           run_locally "rm -f #{filename}"
 
