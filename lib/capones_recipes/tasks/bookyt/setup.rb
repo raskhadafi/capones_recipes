@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../utilities')
 
 Capistrano::Configuration.instance(true).load do
   after "deploy:setup", "bookyt:setup"
-  before "deploy:migrate", "bookyt:symlink"
+  after "deploy:finalize_update", "bookyt:symlink"
 
   namespace :bookyt do
     desc "Asks which modules should be initialized and writes the config/initializer/bookyt.rb"

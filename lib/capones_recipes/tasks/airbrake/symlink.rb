@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance(true).load do
-  before "deploy:migrate", "airbrake:symlink"
+  after "deploy:finalize_update", "airbrake:symlink"
   
   namespace :airbrake do
     desc "Sets the symlink to shared/config/initializers/airbrake.rb"
