@@ -2,6 +2,9 @@ require 'capistrano'
 require 'capistrano/cli'
 require 'capistrano_colors'
 
+# Multistaging
+require 'capistrano/ext/multistage'
+
 # Passenger
 require 'cap_recipes/tasks/passenger'
 
