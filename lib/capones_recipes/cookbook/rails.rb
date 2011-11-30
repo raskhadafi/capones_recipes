@@ -2,6 +2,9 @@ require 'capistrano'
 require 'capistrano/cli'
 require 'capistrano_colors'
 
+# Deploy Targets
+require File.join(File.dirname(__FILE__), '../tasks/deploy_targets.rb')
+
 # Multistaging
 require 'capistrano/ext/multistage'
 
