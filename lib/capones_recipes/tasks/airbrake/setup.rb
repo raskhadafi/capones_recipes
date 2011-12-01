@@ -9,6 +9,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       api_key = Utilities.ask('Please insert the API key.', '')
       run "mkdir -p #{shared_path}/config/initializers"
       initializer_template = File.expand_path(File.dirname(__FILE__) + '/templates/airbrake.rb')
-      put Utilities.init_file(initializer_template, "<%%>", api_key), "#{shared_path}/config/initializers/airbrake.rb"    end
+      put Utilities.init_file(initializer_template, "<%%>", api_key), "#{shared_path}/config/initializers/airbrake.rb"
+    end
   end
 end
