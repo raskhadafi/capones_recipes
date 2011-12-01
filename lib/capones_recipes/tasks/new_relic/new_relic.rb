@@ -1,11 +1,9 @@
 Capistrano::Configuration.instance.load do
-  before "deploy:setup", :new_relic
   after "deploy:update_code", "new_relic:symlink"
 
   namespace :new_relic do
-    desc "Create application yaml in capistrano shared path"
-    task :default do
-      run "mkdir -p #{shared_path}/config"
+    desc "Creates newrelic configuration based on example"
+    task :prepare_config do
       upload "config/newrelic.yml.example", "#{shared_path}/config/newrelic.yml", :via => :scp
     end
 

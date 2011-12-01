@@ -1,13 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../utilities')
 
-Capistrano::Configuration.instance(:must_exist).load do
-  after "deploy:setup", "airbrake:setup"
-  
+Capistrano::Configuration.instance.load do
   namespace :airbrake do
     desc "Creates the air brake initializer with the custom API key."
-    task :setup do
+    task :prepare_config do
       api_key = Utilities.ask('Please insert the API key.', '')
-      run "mkdir -p #{shared_path}/config/initializers"
       initializer_template = File.expand_path(File.dirname(__FILE__) + '/templates/airbrake.rb')
       put Utilities.init_file(initializer_template, "<%%>", api_key), "#{shared_path}/config/initializers/airbrake.rb"
     end

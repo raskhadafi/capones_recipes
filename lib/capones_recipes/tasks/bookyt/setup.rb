@@ -1,14 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../utilities')
 
 Capistrano::Configuration.instance(true).load do
-  after "deploy:setup", "bookyt:setup"
   after "deploy:finalize_update", "bookyt:symlink"
 
   namespace :bookyt do
-    desc "Asks which modules should be initialized and writes the config/initializer/bookyt.rb"
-    task :setup, :roles => :app do
-      run "mkdir -p #{shared_path}/initializer"
-      
+    desc "Interactive configuration"
+    task :prepare_config, :roles => :app do
       modules = [:pos, :salary, :stock, :projects].inject([]) do |out, pos|
         out << "bookyt_#{pos.to_s}" if Utilities.yes? "Install bookyt_#{pos.to_s}"
         

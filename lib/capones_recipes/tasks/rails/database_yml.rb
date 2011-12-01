@@ -1,10 +1,9 @@
 Capistrano::Configuration.instance.load do
-  before "deploy:setup", :db
   after "deploy:finalize_update", "db:symlink"
 
   namespace :db do
-    desc "Create database yaml in capistrano shared path"
-    task :default do
+    desc "Create database.yaml based on example"
+    task :prepare_config do
       run "mkdir -p #{shared_path}/config"
       upload "config/database.yml.example", "#{shared_path}/config/database.yml", :via => :scp
     end
