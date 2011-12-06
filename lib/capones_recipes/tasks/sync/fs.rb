@@ -7,7 +7,7 @@ Capistrano::Configuration.instance.load do
       desc <<-DESC
         Sync declared directories from the selected multi_stage environment to the local development
         environment. The synced directories must be declared as an array of Strings with the sync_directories
-        variable. The path is relative to the rails root.
+        variable. The path is relative to the shared path.
       DESC
       task :fs, :roles => :web, :once => true do
         # Use production on non-multistage
@@ -22,7 +22,7 @@ Capistrano::Configuration.instance.load do
           end
           logger.info "sync #{syncdir} from #{server}:#{port} to local"
           destination, base = Pathname.new(syncdir).split
-          run_locally "rsync --verbose --archive --compress --copy-links --delete --stats --rsh='ssh -p #{port}' #{user}@#{server}:#{current_path}/#{syncdir} #{destination.to_s}"
+          run_locally "rsync --verbose --archive --compress --copy-links --delete --stats --rsh='ssh -p #{port}' #{user}@#{server}:#{shared_path}/#{syncdir} #{destination.to_s}"
         end
 
         logger.important "sync filesystem from the stage '#{stage}' to local finished"
@@ -33,7 +33,7 @@ Capistrano::Configuration.instance.load do
       desc <<-DESC
         Sync declared directories from the local development environement to the selected multi_stage
         environment. The synced directories must be declared as an array of Strings with the sync_directories
-        variable.  The path is relative to the rails root.
+        variable.  The path is relative to the shared path.
       DESC
       task :fs, :roles => :web, :once => true do
         # Use production on non-multistage
@@ -45,7 +45,7 @@ Capistrano::Configuration.instance.load do
           if File.directory? "#{syncdir}"
             # Make a backup
             logger.info "backup #{syncdir}"
-            run "tar cjf #{shared_path}/sync/#{base}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.tar.bz2 #{current_path}/#{syncdir}"
+            run "tar cjf #{shared_path}/sync/#{base}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.tar.bz2 #{shared_path}/#{syncdir}"
             purge_old_backups "#{base}"
           else
             logger.info "Create '#{syncdir}' directory"
@@ -54,7 +54,7 @@ Capistrano::Configuration.instance.load do
 
           # Sync directory up
           logger.info "sync #{syncdir} to #{server}:#{port} from local"
-          run_locally "rsync --verbose --archive --compress --keep-dirlinks --delete --stats --rsh='ssh -p #{port}' #{syncdir} #{user}@#{server}:#{current_path}/#{destination.to_s}"
+          run_locally "rsync --verbose --archive --compress --keep-dirlinks --delete --stats --rsh='ssh -p #{port}' #{syncdir} #{user}@#{server}:#{shared_path}/#{destination.to_s}"
         end
         logger.important "sync filesystem from local to the stage '#{stage}' finished"
       end
