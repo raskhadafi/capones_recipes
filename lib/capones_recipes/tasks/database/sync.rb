@@ -15,28 +15,7 @@ Capistrano::Configuration.instance.load do
   # Kindly sponsored by Screen Concept, www.screenconcept.ch
   #
   namespace :sync do
-
-    after "deploy:setup", "sync:setup"
-
-    desc <<-DESC
-      Creates the sync dir in shared path. The sync directory is used to keep
-      backups of database dumps and archives from synced directories. This task will
-      be called on 'deploy:setup'
-    DESC
-    task :setup do
-      run "mkdir -p #{shared_path}/sync"
-    end
-
     namespace :down do
-
-      desc <<-DESC
-        Syncs the database and declared directories from the selected multi_stage environment
-        to the local development environment. This task simply calls both the 'sync:down:db' and
-        'sync:down:fs' tasks.
-      DESC
-      task :default do
-        db and fs
-      end
 
       desc <<-DESC
         Syncs database from the selected mutli_stage environement to the local develoment environment.
@@ -74,42 +53,9 @@ Capistrano::Configuration.instance.load do
         run_locally "rake db:migrate"
       end
 
-      desc <<-DESC
-        Sync declared directories from the selected multi_stage environment to the local development
-        environment. The synced directories must be declared as an array of Strings with the sync_directories
-        variable. The path is relative to the rails root.
-      DESC
-      task :fs, :roles => :web, :once => true do
-        # Use production on non-multistage
-        set :stage, 'production' unless exists?(:stage)
-
-        server, port = host_and_port
-
-        Array(fetch(:sync_directories, [])).each do |syncdir|
-          unless File.directory? "#{syncdir}"
-            logger.info "create local '#{syncdir}' folder"
-            Dir.mkdir "#{syncdir}"
-          end
-          logger.info "sync #{syncdir} from #{server}:#{port} to local"
-          destination, base = Pathname.new(syncdir).split
-          run_locally "rsync --verbose --archive --compress --copy-links --delete --stats --rsh='ssh -p #{port}' #{user}@#{server}:#{current_path}/#{syncdir} #{destination.to_s}"
-        end
-
-        logger.important "sync filesystem from the stage '#{stage}' to local finished"
-      end
-
     end
 
     namespace :up do
-
-      desc <<-DESC
-        Syncs the database and declared directories from the local development environment
-        to the selected multi_stage environment. This task simply calls both the 'sync:up:db' and
-        'sync:up:fs' tasks.
-      DESC
-      task :default do
-        db and fs
-      end
 
       desc <<-DESC
         Syncs database from the local develoment environment to the selected mutli_stage environement.
@@ -153,35 +99,6 @@ Capistrano::Configuration.instance.load do
         logger.important "sync database from local to the stage '#{stage}' finished"
       end
 
-      desc <<-DESC
-        Sync declared directories from the local development environement to the selected multi_stage
-        environment. The synced directories must be declared as an array of Strings with the sync_directories
-        variable.  The path is relative to the rails root.
-      DESC
-      task :fs, :roles => :web, :once => true do
-        # Use production on non-multistage
-        set :stage, 'production' unless exists?(:stage)
-
-        server, port = host_and_port
-        Array(fetch(:sync_directories, [])).each do |syncdir|
-          destination, base = Pathname.new(syncdir).split
-          if File.directory? "#{syncdir}"
-            # Make a backup
-            logger.info "backup #{syncdir}"
-            run "tar cjf #{shared_path}/sync/#{base}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.tar.bz2 #{current_path}/#{syncdir}"
-            purge_old_backups "#{base}"
-          else
-            logger.info "Create '#{syncdir}' directory"
-            run "mkdir #{current_path}/#{syncdir}"
-          end
-
-          # Sync directory up
-          logger.info "sync #{syncdir} to #{server}:#{port} from local"
-          run_locally "rsync --verbose --archive --compress --keep-dirlinks --delete --stats --rsh='ssh -p #{port}' #{syncdir} #{user}@#{server}:#{current_path}/#{destination.to_s}"
-        end
-        logger.important "sync filesystem from local to the stage '#{stage}' finished"
-      end
-
     end
 
     #
@@ -211,21 +128,6 @@ Capistrano::Configuration.instance.load do
     #
     def host_and_port
       return roles[:web].servers.first.host, ssh_options[:port] || roles[:web].servers.first.port || 22
-    end
-
-    #
-    # Purge old backups within the shared sync directory
-    #
-    def purge_old_backups(base)
-      count = fetch(:sync_backups, 5).to_i
-      backup_files = capture("ls -xt #{shared_path}/sync/#{base}*").split.reverse
-      if count >= backup_files.length
-        logger.important "no old backups to clean up"
-      else
-        logger.info "keeping #{count} of #{backup_files.length} sync backups"
-        delete_backups = (backup_files - backup_files.last(count)).join(" ")
-        try_sudo "rm -rf #{delete_backups}"
-      end
     end
 
   end
