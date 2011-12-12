@@ -49,7 +49,7 @@ Capistrano::Configuration.instance.load do
             purge_old_backups "#{base}"
           else
             logger.info "Create '#{syncdir}' directory"
-            run "mkdir #{current_path}/#{syncdir}"
+            run "mkdir #{latest_release}/#{syncdir}"
           end
 
           # Sync directory up
