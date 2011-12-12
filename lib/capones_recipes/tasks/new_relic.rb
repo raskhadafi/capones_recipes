@@ -9,7 +9,7 @@ Capistrano::Configuration.instance.load do
 
     desc "Make symlink for shared application yaml"
     task :symlink do
-      run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
+      run "ln -nfs #{shared_path}/config/newrelic.yml #{latest_release}/config/newrelic.yml"
     end
   end
 end

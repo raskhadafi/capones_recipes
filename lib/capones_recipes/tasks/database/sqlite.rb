@@ -23,7 +23,7 @@ Capistrano::Configuration.instance.load do
 
     desc "Make symlink for shared database"
     task :symlink do
-      run "ln -nfs #{shared_path}/db/#{rails_env}.sqlite3 #{release_path}/db/#{rails_env}.sqlite3"
+      run "ln -nfs #{shared_path}/db/#{rails_env}.sqlite3 #{latest_release}/db/#{rails_env}.sqlite3"
     end
   end
 end

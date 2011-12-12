@@ -10,7 +10,7 @@ Capistrano::Configuration.instance.load do
 
     desc "Make symlink for shared database yaml"
     task :symlink do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
     end
 
     task :rake, :roles => :app do

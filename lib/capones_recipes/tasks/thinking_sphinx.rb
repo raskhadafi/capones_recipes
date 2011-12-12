@@ -5,6 +5,7 @@ Capistrano::Configuration.instance.load do
   before "thinking_sphinx:symlink", "thinking_sphinx:setup"
   after "deploy:finalize_update", "thinking_sphinx:symlink"
   before "deploy:restart", "thinking_sphinx:rebuild"
+  after "sync:up:db", "thinking_sphinx:rebuild"
 
   namespace :thinking_sphinx do
     desc "Prepare for sphinx config"
@@ -16,9 +17,9 @@ Capistrano::Configuration.instance.load do
 
     desc "Make symlink for sphinx configs and data"
     task :symlink, :roles => :app do
-      run "ln -nfs #{shared_path}/config/sphinx #{release_path}/config/sphinx"
-      run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
-      run "ln -nfs #{shared_path}/tmp/sockets #{release_path}/tmp/sockets"
+      run "ln -nfs #{shared_path}/config/sphinx #{latest_release}/config/sphinx"
+      run "ln -nfs #{shared_path}/db/sphinx #{latest_release}/db/sphinx"
+      run "ln -nfs #{shared_path}/tmp/sockets #{latest_release}/tmp/sockets"
     end
   end
 end

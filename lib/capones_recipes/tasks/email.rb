@@ -5,7 +5,7 @@ Capistrano::Configuration.instance.load do
   namespace :email do
     desc "Make symlink for email config"
     task :symlink, :roles => :app do
-      run "ln -nfs #{shared_path}/config/initializers/email.rb #{release_path}/config/initializers/email.rb"
+      run "ln -nfs #{shared_path}/config/initializers/email.rb #{latest_release}/config/initializers/email.rb"
     end
   end
 end
