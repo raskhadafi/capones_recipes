@@ -1,4 +1,5 @@
 Capistrano::Configuration.instance.load do
+  before "deploy:setup", "db:prepare_config"
   after "deploy:finalize_update", "db:symlink"
 
   namespace :db do
