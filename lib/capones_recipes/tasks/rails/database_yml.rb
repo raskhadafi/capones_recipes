@@ -19,7 +19,7 @@ Capistrano::Configuration.instance.load do
     end
 
     desc "Setup database"
-    task :setup, :roles => :app do
+    task :setup, :roles => :db do
       set :rake_task, 'db:setup'
       rake
     end
