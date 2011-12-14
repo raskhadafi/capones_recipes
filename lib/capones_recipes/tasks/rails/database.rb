@@ -59,7 +59,7 @@ Capistrano::Configuration.instance.load do
     end
 
     task :rake, :roles => :app do
-      run("cd #{deploy_to}/current && /usr/bin/env bundle exec rake #{rake_task} RAILS_ENV=#{rails_env}")
+      run("cd #{latest_release} && /usr/bin/env bundle exec rake #{rake_task} RAILS_ENV=#{rails_env}")
     end
 
     desc "Setup database"
