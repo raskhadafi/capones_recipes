@@ -2,6 +2,8 @@ Capistrano::Configuration.instance.load do
   before "deploy:setup", "db:prepare_config"
   after "deploy:finalize_update", "db:symlink"
 
+  before "db:setup", "deploy:update_code"
+
   namespace :db do
     desc "Create database.yaml based on example"
     task :prepare_config do
