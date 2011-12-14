@@ -5,7 +5,7 @@ Capistrano::Configuration.instance.load do
   before "db:setup", "deploy:update_code"
 
   namespace :db do
-    desc "Create database.yaml based on example"
+    desc "Create shared directories"
     task :prepare_config do
       run "mkdir -p #{shared_path}/db"
       run "mkdir -p #{shared_path}/config"
