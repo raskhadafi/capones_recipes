@@ -42,16 +42,17 @@ Capistrano::Configuration.instance.load do
         server, port = host_and_port
         Array(fetch(:sync_directories, [])).each do |syncdir|
           destination, base = Pathname.new(syncdir).split
-          if File.directory? "#{syncdir}"
-            # Make a backup
-            logger.info "backup #{syncdir}"
-            run "tar cjf #{shared_path}/sync/#{base}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.tar.bz2 #{shared_path}/#{syncdir}"
-            purge_old_backups "#{base}"
-          else
+          
+          unless File.directory? "#{syncdir}"
             logger.info "Create '#{syncdir}' directory"
-            run "mkdir #{latest_release}/#{syncdir}"
+            run "mkdir -p #{shared_path}/#{syncdir}"
           end
-
+          
+          # Make a backup
+          logger.info "backup #{syncdir}"
+          run "tar cjf #{shared_path}/sync/#{base}.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.tar.bz2 #{shared_path}/#{syncdir}"
+          purge_old_backups "#{base}"
+          
           # Sync directory up
           logger.info "sync #{syncdir} to #{server}:#{port} from local"
           run_locally "rsync --verbose --archive --compress --keep-dirlinks --delete --stats --rsh='ssh -p #{port}' #{syncdir} #{user}@#{server}:#{shared_path}/#{destination.to_s}"
