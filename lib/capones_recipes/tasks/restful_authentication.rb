@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance.load do
   before "deploy:setup", "restful_authentication:prepare_config"
-  after "deploy:update_code", "restful_authentication:symlink"
+  after "deploy:finalize_update", "restful_authentication:symlink"
   before "restful_authentication:configure", "deploy:update_code"
 
   namespace :restful_authentication do
