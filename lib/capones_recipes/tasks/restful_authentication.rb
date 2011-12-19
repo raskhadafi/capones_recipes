@@ -10,7 +10,7 @@ Capistrano::Configuration.instance.load do
     end
 
     desc "Make symlink for site key"
-    task :symlink, :role => :app do
+    task :symlink, :roles => :app do
       run "ln -nfs #{shared_path}/config/initializers/site_keys.rb #{latest_release}/config/initializers/site_keys.rb"
     end
 
