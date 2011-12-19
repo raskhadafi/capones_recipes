@@ -5,12 +5,12 @@ Capistrano::Configuration.instance.load do
 
   namespace :restful_authentication do
     desc "Create shared directories"
-    task :prepare_config do
+    task :prepare_config, :roles => :app do
       run "mkdir -p #{shared_path}/config/initializers"
     end
 
     desc "Make symlink for site key"
-    task :symlink do
+    task :symlink, :role => :app do
       run "ln -nfs #{shared_path}/config/initializers/site_keys.rb #{latest_release}/config/initializers/site_keys.rb"
     end
 
@@ -23,14 +23,14 @@ Capistrano::Configuration.instance.load do
   namespace :sync do
     namespace :down do
       desc "Sync down site key"
-      task :restful_authentication do
+      task :restful_authentication, :roles => :app do
         download "#{shared_path}/config/initializers/site_keys.rb", "config/initializers/site_keys.rb"
       end
     end
 
     namespace :up do
       desc "Sync up site key"
-      task :restful_authentication do
+      task :restful_authentication, :roles => :app do
         upload "config/initializers/site_keys.rb", "#{shared_path}/config/initializers/site_keys.rb"
       end
     end

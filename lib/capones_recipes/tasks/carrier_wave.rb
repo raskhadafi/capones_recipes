@@ -4,12 +4,12 @@ Capistrano::Configuration.instance.load do
 
   namespace :carrier_wave do
     desc "Create upload directory in capistrano shared path"
-    task :setup do
+    task :setup, :roles => :app do
       run "mkdir -p #{shared_path}/uploads"
     end
 
     desc "Make symlink for uploads directory"
-    task :symlink do
+    task :symlink, :roles => :app do
       run "ln -nfs #{shared_path}/uploads #{latest_release}/uploads"
     end
   end

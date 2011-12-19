@@ -5,12 +5,12 @@ Capistrano::Configuration.instance.load do
   
   namespace :email do
     desc "Create shared directories"
-    task :prepare_config do
+    task :prepare_config, :roles => :app do
       run "mkdir -p #{shared_path}/config/initializers"
     end
 
     desc "Configure email.yml"
-    task :configure, :except => {:no_release => true} do
+    task :configure, :roles => :app do
       default_template = <<-EOF
       ActionMailer::Base.delivery_method = :sendmail
       EOF

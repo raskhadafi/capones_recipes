@@ -17,7 +17,7 @@ Capistrano::Configuration.instance.load do
       backups of database dumps and archives from synced directories. This task will
       be called on 'deploy:setup'
     DESC
-    task :setup do
+    task :setup, :roles => :app do
       run "mkdir -p #{shared_path}/sync"
     end
 

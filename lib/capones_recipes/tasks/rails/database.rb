@@ -6,7 +6,7 @@ Capistrano::Configuration.instance.load do
 
   namespace :db do
     desc "Create shared directories"
-    task :prepare_config do
+    task :prepare_config, :roles => :app do
       run "mkdir -p #{shared_path}/db"
       run "mkdir -p #{shared_path}/config"
     end
@@ -30,7 +30,7 @@ Capistrano::Configuration.instance.load do
       capistrano-ext/multistaging to avoid multiple db:configure calls
       when running deploy:configure for all stages one by one.
     DESC
-    task :configure, :except => { :no_release => true } do
+    task :configure, :roles => :app do
 
       default_template = <<-EOF
       base: &base
@@ -56,7 +56,7 @@ Capistrano::Configuration.instance.load do
     end
 
     desc "Make symlink for shared database yaml"
-    task :symlink do
+    task :symlink, :roles => :app do
       run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
     end
 

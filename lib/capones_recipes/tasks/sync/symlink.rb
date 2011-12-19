@@ -7,7 +7,7 @@ Capistrano::Configuration.instance.load do
     after "sync:up:fs", "sync:symlink"
     
     desc "Sets the symlink to sync directories"
-    task :symlink do
+    task :symlink, :roles => :app do
       Array(fetch(:sync_directories, [])).each do |syncdir|
         unless File.directory? "#{syncdir}"
           logger.info "Create '#{syncdir}' directory"
