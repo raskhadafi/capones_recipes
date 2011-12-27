@@ -22,13 +22,6 @@ Capistrano::Configuration.instance.load do
       called database.yml.erb is found either is :template_dir
       or /config/deploy folders. The default template matches
       the template for config/database.yml file shipped with Rails.
-
-      When this recipe is loaded, db:configure is automatically configured
-      to be invoked after deploy:setup. You can skip this task setting
-      the variable :skip_db_setup to true. This is especially useful
-      if you are using this recipe in combination with
-      capistrano-ext/multistaging to avoid multiple db:configure calls
-      when running deploy:configure for all stages one by one.
     DESC
     task :configure, :roles => :app do
 
