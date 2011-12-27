@@ -3,6 +3,9 @@ Capistrano::Configuration.instance.load do
   after "deploy:finalize_update", "db:symlink"
 
   before "db:setup", "deploy:update_code"
+  before "db:setup", "db:create"
+  before "db:setup", "db:grant"
+  before "db:setup", "db:configure"
 
   namespace :db do
     desc "Create shared directories"
