@@ -60,12 +60,22 @@ Capistrano::Configuration.instance.load do
       run("cd #{latest_release} && /usr/bin/env bundle exec rake #{rake_task} RAILS_ENV=#{rails_env}")
     end
 
-    desc "Setup database"
-    task :setup, :roles => :db do
+    desc "Load DB schema"
+    task :load_schema, :roles => :db do
       set :rake_task, 'db:schema:load'
       rake
+    end
+
+    desc "Load DB seeds"
+    task :load_seed, :roles => :db do
       set :rake_task, 'db:seed'
       rake
+    end
+
+    desc "Setup database"
+    task :setup, :roles => :db do
+      load_schema
+      load_seed
     end
   end
 end
