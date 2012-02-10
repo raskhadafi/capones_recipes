@@ -1,3 +1,3 @@
 module CaponesRecipes
-  VERSION = "1.14.3"
+  VERSION = "1.14.1"
 end
