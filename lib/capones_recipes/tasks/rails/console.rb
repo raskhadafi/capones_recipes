@@ -15,22 +15,6 @@ Capistrano::Configuration.instance.load do
     run_with_tty server, %W( script/dbconsole #{rails_env} )
   end
 
-  set :rake_cmd do
-    rails_env = fetch(:rails_env, "production")
-    "cd #{current_path} && rake RAILS_ENV=#{rails_env}"
-  end
-
-  # FIXME run on only one server?
-  desc "task=command runs rake 'command' on application servers"
-  task :rake, :roles => [:app] do
-    if ENV['task']
-      run "#{rake_cmd} #{ENV['task']}"
-    else
-      # FIXME use logger instead of warn?
-      warn "USAGE: cap rails:rake task=..."
-    end
-  end
-
   def run_with_tty server, cmd
     # looks like total pizdets
     command = []
