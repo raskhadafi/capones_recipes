@@ -118,7 +118,7 @@ Capistrano::Configuration.instance.load do
     #
     def remote_database_config(db)
       env = rails_env || db
-      config = capture "cat #{deploy_to}/current/config/database.yml"
+      config = capture "cat #{latest_release}/config/database.yml"
       database = YAML::load(config)
       return database["#{env}"]['username'], database["#{env}"]['password'], database["#{env}"]['database'], database["#{env}"]['host']
     end
