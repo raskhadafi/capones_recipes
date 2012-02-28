@@ -3,7 +3,7 @@ Capistrano::Configuration.instance.load do
 
   namespace :settings_logic do
     desc "Make symlink for shared application yaml"
-    task :symlink do
+    task :symlink, :roles => :app do
       run "ln -nfs #{shared_path}/config/application.yml #{latest_release}/config/application.yml"
     end
   end
