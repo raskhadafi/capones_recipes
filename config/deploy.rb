@@ -7,6 +7,10 @@ role :app, "your app-server here"                          # This may be the sam
 role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
 role :db,  "your slave db-server here"
 
+# Sync directories
+set :sync_directories, ['dir', 'another-dir']
+set :sync_backups, 3
+
 # Configuration
 set :scm, :git
 ssh_options[:forward_agent] = true
