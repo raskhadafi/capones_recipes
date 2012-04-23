@@ -1,6 +1,6 @@
 # Email configuration
 Capistrano::Configuration.instance.load do
-  before "deploy:setup", "db:prepare_config"
+  before "deploy:setup", "email:prepare_config"
   after "deploy:finalize_update", "email:symlink"
   
   namespace :email do
