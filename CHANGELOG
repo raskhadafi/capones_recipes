@@ -1,3 +1,7 @@
+1.16.0
+======
+* New recipe for process monitoring with bluepill.
+
 1.15.5
 ======
 * Use FQDN for web servers when granting DB permissions.
