@@ -4,7 +4,7 @@ require 'thinking_sphinx/deploy/capistrano'
 Capistrano::Configuration.instance.load do
   before "thinking_sphinx:symlink", "thinking_sphinx:setup"
   after "deploy:finalize_update", "thinking_sphinx:symlink"
-  before "deploy:restart", "thinking_sphinx:rebuild"
+  before "deploy:restart", "thinking_sphinx:configure"
   after "sync:up:db", "thinking_sphinx:rebuild"
 
   namespace :thinking_sphinx do

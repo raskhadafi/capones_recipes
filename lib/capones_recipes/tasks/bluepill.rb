@@ -1,18 +1,15 @@
 Capistrano::Configuration.instance.load do
   namespace :deploy do
     task :start, :roles => :app, :except => { :no_release => true } do
-      set :bluepill_app, "#{client}.#{domain}"
-      run "bluepill --no-privileged #{bluepill_app} start"
+      run "bluepill --no-privileged #{instance} start"
     end
 
     task :stop, :roles => :app, :except => { :no_release => true } do
-      set :bluepill_app, "#{client}.#{domain}"
-      run "bluepill --no-privileged #{bluepill_app} stop"
+      run "bluepill --no-privileged #{instance} stop"
     end
 
     task :restart, :roles => :app, :except => { :no_release => true } do
-      set :bluepill_app, "#{client}.#{domain}"
-      run "bluepill --no-privileged #{bluepill_app} restart"
+      run "bluepill --no-privileged #{instance} restart"
     end
   end
 
@@ -36,8 +33,7 @@ Capistrano::Configuration.instance.load do
 
     desc "Prints bluepills monitored processes statuses"
     task :status, :roles => [:app] do
-      set :bluepill_app, "#{client}.#{domain}"
-      run "bluepill --no-privileged #{bluepill_app} status"
+      run "bluepill --no-privileged #{instance} status"
     end
   end
 end
