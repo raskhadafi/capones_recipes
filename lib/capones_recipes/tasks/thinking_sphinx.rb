@@ -21,5 +21,18 @@ Capistrano::Configuration.instance.load do
       run "ln -nfs #{shared_path}/db/sphinx #{latest_release}/db/sphinx"
       run "ln -nfs #{shared_path}/tmp/sockets #{latest_release}/tmp/sockets"
     end
+
+    desc "Rebuild index"
+    task :rebuild, :roles => :app do
+      run_rake "thinking_sphinx:rebuild"
+    end
+
+    def run_rake(task, options={}, &block)
+      rake = fetch(:rake, "rake")
+      rails_env = fetch(:rails_env, 'production')
+
+      command = "cd #{latest_release} && #{rake} #{task} RAILS_ENV=#{rails_env} ; true"
+      run(command, options, &block)
+    end
   end
 end
