@@ -1,3 +1,7 @@
+1.19.1
+======
+* Add pessimistic version restriction on capistrano ~> 2.0
+
 1.19.0
 ======
 * Add host_and_port helper from sync:db to sync:fs.
