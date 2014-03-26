@@ -48,7 +48,7 @@ Capistrano::Configuration.instance.load do
         run_locally "rm -f #{filename}"
 
         logger.important "sync database from the stage '#{stage}' to local finished"
-        
+
         # Start db:migrate
         run_locally "rake db:migrate"
       end
@@ -122,13 +122,5 @@ Capistrano::Configuration.instance.load do
       database = YAML::load(config)
       return database["#{env}"]['username'], database["#{env}"]['password'], database["#{env}"]['database'], database["#{env}"]['host']
     end
-
-    #
-    # Returns the actual host name to sync and port
-    #
-    def host_and_port
-      return roles[:web].servers.first.host, ssh_options[:port] || roles[:web].servers.first.port || 22
-    end
-
   end
 end
