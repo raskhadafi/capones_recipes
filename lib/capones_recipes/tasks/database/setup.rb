@@ -17,7 +17,7 @@ Capistrano::Configuration.instance.load do
       # TODO: support more than one server
       web_server = find_servers(:roles => :app).first
       # lookup fqdn for web servers
-      fqdn_web_server = `host #{web_server} | cut -f 1 -d ' '`.delete("\n")
+      fqdn_web_server = `host -N 2 #{web_server} | cut -f 1 -d ' '`.delete("\n")
       run "mysql -u root -p #{db_database} -e \"GRANT ALL PRIVILEGES ON #{db_database}.* TO '#{db_username}'@'#{fqdn_web_server}' IDENTIFIED BY '#{db_password}'\"" do |channel, stream, data|
         if data =~ /^Enter password:/
           logger.info "#{channel[:host]} asked for password"
