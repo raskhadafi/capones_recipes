@@ -1,3 +1,7 @@
+1.20.0
+======
+* Allow domainless hostnames with up to two dots when looking up FQDN for webserver in DB server grant.
+
 1.19.1
 ======
 * Add pessimistic version restriction on capistrano ~> 2.0
