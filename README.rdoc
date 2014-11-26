@@ -26,11 +26,18 @@ bundler exec cap -T # Shows the avaible cap tasks.
 
 == Contributing to capones-recipes
  
-* Roman Simecek roman.simecek@cyt.ch
-* CyT GmbH http://www.cyt.ch
+This work was made possible by paid client work and open source
+contributions.
+
+Thanks go to:
+* Roman Simecek <roman.simecek@cyt.ch>
+* Simon Hürlimann <simon.huerlimann@cyt.ch>
+* CyT GmbH <http://www.cyt.ch>
+* doku-zug.ch <http://www.doku-zug.ch>
+* Bookyt <http://www.bookyt.ch>
+* Panter AG <http://www.panter.ch>
 
 == Copyright
 
-Copyright (c) 2011 Roman Simecek. See LICENSE.txt for
-further details.
+See LICENSE.txt for further details.
 
