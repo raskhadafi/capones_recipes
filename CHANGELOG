@@ -1,6 +1,6 @@
 1.20.1
 ======
-* Support newer versions of thinking_sphinx gem
+* Support newer versions of thinking_sphinx gem. Thanks to Markus Koller <mak@panter.ch>
 
 1.20.0
 ======
