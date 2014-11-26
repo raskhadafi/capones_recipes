@@ -1,5 +1,10 @@
 # Thinking Sphinx for Capistrano
-require 'thinking_sphinx/deploy/capistrano'
+begin
+  require 'thinking_sphinx/capistrano'
+rescue LoadError
+  # Support older versions of the thinking_sphinx gem (< 3.0)
+  require 'thinking_sphinx/deploy/capistrano'
+end
 
 Capistrano::Configuration.instance.load do
   before "thinking_sphinx:symlink", "thinking_sphinx:setup"
