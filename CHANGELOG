@@ -1,3 +1,7 @@
+1.20.1
+======
+* Support newer versions of thinking_sphinx gem
+
 1.20.0
 ======
 * Allow domainless hostnames with up to two dots when looking up FQDN for webserver in DB server grant.
